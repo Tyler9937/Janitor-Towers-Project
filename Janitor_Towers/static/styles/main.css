@@ -1,0 +1,61 @@
+
+.game_title {
+
+    position: absolute;
+    width: 773px;
+    height: 30px;
+    left: calc(50% - 773px/2);
+    top: 57px;
+    
+    background: #000000;    
+}
+
+
+.room_location {
+    position: absolute;
+    width: 177px;
+    height: 27px;
+    left: 12px;
+    top: calc(50% - 27px/2 + 1.5px);
+    
+    font-family: Turret Road;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 26px;
+
+    color: #FFFFFF;
+}
+
+
+.moves {
+    position: absolute;
+    width: 166px;
+    height: 27px;
+    right: 25px;
+    top: calc(50% - 27px/2 + 1.5px);
+    
+    font-family: Turret Road;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 26px;
+    /* identical to box height 691*/
+    
+    
+    color: #FFFFFF;
+    
+}
+
+
+.game_text {
+    position: absolute;
+    width: 773px;
+    height: 500px;
+    left: calc(50% - 773px/2);
+    top: 83px;
+    overflow:auto;
+    overflow-wrap: break-word;
+    
+    background: #FFFFFF;
+}
