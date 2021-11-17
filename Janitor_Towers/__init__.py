@@ -8,4 +8,5 @@ if __name__ == "__main__":
 #gunicorn twitoff:APP -t 1200
 #pipenv shell
 #set FLASK_APP=Janitor_Towers:APP flask run
+#set FLASK_ENV=development
 #pipenv shell
