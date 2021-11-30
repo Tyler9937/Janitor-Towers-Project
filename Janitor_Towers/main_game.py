@@ -218,6 +218,7 @@ def game_progression(player_input):
         if parser_result["command_list"]["look"]["room_desc"] != False:
             output_text.append(parser_result["command_list"]["look"]["room_desc"])
 
+
     # parser did not pass
     else:
         if parser_result["error_list"]["live_states"] == False:
