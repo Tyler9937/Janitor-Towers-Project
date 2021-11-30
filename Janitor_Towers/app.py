@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from main_game import game_progression, game_reset
+from main_game import build_game, Game
 
 
 moves = 0
@@ -10,6 +10,7 @@ game_history = []
 # def create_app(): (while in debug mode)
 app = Flask(__name__)
 
+game = build_game()
 
 # Landing Page Initializing game
 @app.route('/')
@@ -24,9 +25,10 @@ def my_form():
                     {"type": "title", "text": "Janitor's Room"},
                     {"type": "space", "text": " "}] 
     moves = 0
-    game_reset()
+    
+    # game_reset()
 
-    return render_template('base.html', room_location="Janitor's Room", moves=moves, game_history=game_history)
+    return render_template('base.html', room_location=game.current_loc, moves=moves, game_history=game_history)
 
 
 # Player input post request (how player will be interacting with the game)
@@ -39,7 +41,12 @@ def my_form_post():
     moves = moves + 1
 
     # Send input text to be proceced by game logic
-    output_text, room_location, game_on = game_progression(input_text)
+    
+    room_location = game.current_loc
+    game.describe()
+    output_text = game.output_text
+    
+    game_on = True
 
     if game_on:
         # System for storing and displaying game history
