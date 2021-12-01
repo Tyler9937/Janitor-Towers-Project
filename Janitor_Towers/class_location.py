@@ -1,3 +1,4 @@
+import random
 from main import check_preconditions
 
 # Object stores all data regarding a specific room in the game's graph
@@ -48,6 +49,11 @@ class Location:
         elif direction == "out":
             connected_location.connections["in"] = self
             connected_location.travel_desc["in"] = ''
+    
+    def add_random_connection(self, possible_locations):
+        random_num = random.randint(0, len(possible_locations))
+        # left off here 12/1/21
+
 
     def add_item(self, name, item):
         self.items[name] = item

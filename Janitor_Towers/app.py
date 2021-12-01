@@ -37,7 +37,7 @@ def my_form():
                     {"type": "space", "text": " "}] 
     moves = 0
     
-    # game_reset()
+    
 
     return render_template('base.html', room_location=game.curr_location.name, moves=moves, game_history=game_history)
 
