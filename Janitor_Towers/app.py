@@ -1,9 +1,10 @@
 from flask import Flask, request, render_template
-from main_game import build_game, Game
+from main_game import output_text, build_game, Parser
 
 
 moves = 0
 game_history = []
+
 
 
 # # Initializing the Flask App
@@ -11,6 +12,7 @@ game_history = []
 app = Flask(__name__)
 
 game = build_game()
+parser = Parser(game)
 
 # Landing Page Initializing game
 @app.route('/')
@@ -28,7 +30,7 @@ def my_form():
     
     # game_reset()
 
-    return render_template('base.html', room_location=game.current_loc, moves=moves, game_history=game_history)
+    return render_template('base.html', room_location=game.curr_location.name, moves=moves, game_history=game_history)
 
 
 # Player input post request (how player will be interacting with the game)
@@ -37,14 +39,22 @@ def my_form_post():
 
     global game_history
     global moves
+    global output_text
     input_text = request.form['text']
     moves = moves + 1
 
     # Send input text to be proceced by game logic
     
-    room_location = game.current_loc
-    game.describe()
-    output_text = game.output_text
+    room_location = game.curr_location.name
+    
+    
+    
+
+    parser.parse_command(input_text)
+    
+    
+    
+    
     
     game_on = True
 
@@ -66,6 +76,7 @@ def my_form_post():
                         {"type": "title", "text": "Janitor's Room"},
                         {"type": "space", "text": " "}]
 
+    output_text.clear()
     return render_template('base.html', room_location=room_location, moves=moves, game_history=game_history)
 
 #return app (while in debug mode)
