@@ -1,5 +1,7 @@
-from flask import Flask, request, render_template
-from main_game import output_text, build_game, Parser
+from flask import Flask, request, render_template, redirect, url_for
+from main import output_text
+from class_parser import Parser
+from func_build_game import build_game
 
 
 moves = 0
@@ -18,8 +20,15 @@ parser = Parser(game)
 @app.route('/')
 def my_form():
     
+    global game
+    global parser
     global game_history
     global moves
+
+    output_text.clear()
+    game = build_game()
+    parser = Parser(game)
+    
 
     game_history = [{"type": "space", "text": " "},
                     {"type": "space", "text": " "},
@@ -45,12 +54,17 @@ def my_form_post():
 
     # Send input text to be proceced by game logic
     
-    room_location = game.curr_location.name
+    
     
     
     
 
-    parser.parse_command(input_text)
+    end_game = parser.parse_command(input_text)
+    if end_game:
+        output_text.append("the game is now offically over")
+        return redirect('/') # restarts game
+
+    room_location = game.curr_location.name
     
     
     

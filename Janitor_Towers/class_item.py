@@ -1,4 +1,4 @@
-from main import output_text
+from main import output_text, check_preconditions
 
 # Stores all information about an item in the game
 class Item:

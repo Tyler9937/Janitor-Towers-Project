@@ -1,6 +1,8 @@
+
 from class_location import Location
 from class_item import Item
 from class_game import Game
+from main import end_game
 
 # Initial build of the game
 def build_game():
@@ -15,6 +17,12 @@ def build_game():
 
     blue_sword = Item("sword", "a sword with a blue tint", "A SHARP BLUE SWORD.", start_at=floor_G)
     dead_duck = Item("dead duck", "a yellow duckling that lays dead", "A VERY DEAD DUCK.", start_at=floor_G)
+    
+
+    # Can not be picked up
+    barrel_of_blood = Item("barrel of blood", "A barrel of blood that sits on floor", "A VERY RED BARREL OF BLOOD", start_at=floor_G, gettable=False)
+
+    barrel_of_blood.add_action("drink from barrel", end_game, ("that is kinda gross, and I think you just died. THE END"))
 
     return Game(floor_G)
 
